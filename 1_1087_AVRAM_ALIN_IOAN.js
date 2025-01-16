@@ -58,6 +58,7 @@ document.getElementById("cerc").addEventListener("click", () => {
     .forEach((btn) => btn.classList.remove("selectat"));
   document.getElementById("cerc").classList.add("selectat");
 });
+
 document.getElementById("linie").addEventListener("click", () => {
   toolCurent = "linie";
   document
@@ -195,10 +196,10 @@ function undo() {
 }
 
 function exportSVG() {
-  // Obținem datele PNG din canvas
+  //obtin date png din canvas
   const pngData = canvas.toDataURL("image/png");
 
-  // Creăm SVG-ul care va conține imaginea PNG
+  // creez svg care contine png data
   const svgContent = `
   <svg 
       xmlns="http://www.w3.org/2000/svg" 
@@ -211,7 +212,7 @@ function exportSVG() {
           xlink:href="${pngData}"/>
   </svg>`;
 
-  // Creăm și descărcăm fișierul SVG
+  // se creeaza link ul de descarcare pentru fisierul svg
   const blob = new Blob([svgContent], { type: "image/svg+xml" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
@@ -219,7 +220,6 @@ function exportSVG() {
   link.download = "canvasVectorial.svg";
   link.click();
 
-  // Curățăm URL-ul creat
   URL.revokeObjectURL(url);
 }
 
@@ -234,7 +234,7 @@ canvas.addEventListener("mousemove", deseneaza);
 canvas.addEventListener("mouseup", stopDesen);
 canvas.addEventListener("mouseout", stopDesen);
 
-//Implementare salvare canvas in format JPEG
+//implementare salvare canvas in format JPEG
 document.getElementById("salveazaJpeg").addEventListener("click", () => {
   const data = canvas.toDataURL("image/png");
   const link = document.createElement("a");
